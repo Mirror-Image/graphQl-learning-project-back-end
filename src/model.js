@@ -1,3 +1,5 @@
+import { v4 } from 'uuid'
+
 const initialDB = [
   [
     'ID-1',
@@ -35,7 +37,28 @@ export const getBookById = (id) => ({
   id,
 })
 
-export const saveBook = (title, id, author) => {
-  booksDB.set(id, { title, author })
+export const saveBook = (book) => {
+  const id = v4()
+  booksDB.set(id, book)
+  return getBookById(id)
+}
+
+export const removeBook = (id) => {
+  const removedBook = getBookById(id)
+  booksDB.delete(id)
+
+  return removedBook
+}
+
+export const updateBook = (id, bookUpdates) => {
+  const book = booksDB.get(id)
+  const updatedBook = {
+    ...book,
+    ...bookUpdates,
+  }
+
+  booksDB.delete(id)
+  booksDB.set(id, updatedBook)
+
   return getBookById(id)
 }
