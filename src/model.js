@@ -34,3 +34,8 @@ export const getBookById = (id) => ({
   ...booksDB.get(id),
   id,
 })
+
+export const saveBook = (title, id, author) => {
+  booksDB.set(id, { title, author })
+  return getBookById(id)
+}
