@@ -1,0 +1,15 @@
+type Book {
+    id: String
+    title: String
+    author: String
+}
+
+input BookInput {
+    title: String!
+    author: String!
+}
+
+input UpdateBookInput {
+    title: String
+    author: String
+}
