@@ -3,10 +3,11 @@ import { ApolloServer } from 'apollo-server-express'
 import { resolvers } from './resolvers'
 import schema from './types.graphql'
 import { api as starshipsAPI } from '../bus/starships/dataSource'
-import {sessionOptions, corsOptions} from './config'
+import { sessionOptions, corsOptions } from './config'
 import session from 'express-session'
 import cors from 'cors'
-import {readToken} from './readToken'
+import { readToken } from './readToken'
+import http from 'http'
 
 const app = express()
 
@@ -32,4 +33,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, cors: false })
 
-export { server, app }
+const httpServer = http.createServer(app)
+server.installSubscriptionHandlers(httpServer)
+
+export { server, httpServer }
