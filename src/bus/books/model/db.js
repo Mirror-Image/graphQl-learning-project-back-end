@@ -1,3 +1,3 @@
-import {initialDB} from './initialDB'
+import { initialDB } from './initialDB'
 
 export const booksDB = new Map(initialDB)

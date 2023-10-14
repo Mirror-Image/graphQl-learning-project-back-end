@@ -1,4 +1,4 @@
-import {USER_SECRET} from './config'
+import { USER_SECRET } from './config'
 import jwt from 'jsonwebtoken'
 
 export const readToken = (req, res, next) => {
